@@ -1,0 +1,165 @@
+
+
+h3 {
+	color: red;
+}
+
+.bg-teal{
+	background-color: #009688;
+}
+
+.bg-teal-lighten-3{
+	background-color: #26a69a;
+
+}
+
+.bord-right{
+  border-right: 1px solid #8b8b8b;
+  height: 80%;
+	
+}
+
+.special-color{
+	background-color:  #37474F;
+	color: white;
+}
+
+.special-color-dark{
+	background-color:  #263238;
+	color: white;
+}
+
+body{
+	background-image: linear-gradient(to top, #ecedee 0%, #eceeef 75%, #e7e8e9 100%);
+	
+	background-color: #eeeeee;
+}
+
+.custom-link{
+	color: white;
+	font-weight: bold;
+}
+
+.custom-link:hover{
+	text-decoration: none !important;
+}
+
+.custom-link2{
+	text-decoration: none;
+	color: #4B515D;
+}
+
+.custom-link2:hover{
+	text-decoration: none;
+	color: #263238;
+}
+
+.round-border{
+	border-top-left-radius:  6px;
+	border-top-right-radius:  6px;
+
+}
+
+.bord-right{
+    border-right: 1px solid #263238;
+ }
+
+ .test{
+ 	color: #fec400 !important;
+ }
+
+ .text-pre{
+    white-space: pre;
+ }
+
+
+.nav-item::after{content:'';display:block;width:0px;height:2px;background:#fec400;transition: 0.2s;}
+.nav-item:hover::after{width:100%;}
+.navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.active, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .show > .nav-link,.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover{color:#fec400;}
+
+.dropdown-item.active, .dropdown-item:active{color:#212529;}
+.dropdown-item:focus, .dropdown-item:hover{background:#fec400;}
+
+
+/* ----- 
+			Style for Gallery 
+-----*/
+
+.gallery {
+    font: normal 16px sans-serif;
+}
+
+.container.gallery-container {
+    background-color: #fff;
+    color: #35373a;
+    min-height: 100vh;
+    border-radius: 0px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
+}
+
+.gallery-container h1 {
+    text-align: center;
+    padding-top: 30px;
+    font-family: 'Droid Sans', sans-serif;
+    font-weight: bold;
+}
+
+.gallery-container p.page-description {
+    text-align: center;
+    max-width: 800px;
+    margin: 25px auto;
+    color: #888;
+    font-size: 18px;
+}
+
+.tz-gallery {
+    padding: 40px;
+}
+
+.tz-gallery .lightbox img {
+    width: 100%;
+    margin-bottom: 30px;
+    transition: 0.2s ease-in-out;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+}
+
+
+.tz-gallery .lightbox img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+.tz-gallery img {
+    border-radius: 4px;
+}
+
+.baguetteBox-button {
+    background-color: transparent !important;
+}
+
+.caption {
+    position: absolute;
+    top: 70%;
+    left: 0;
+    width: 100%;
+    color: lightgrey;
+}
+
+.bt-custom {
+	 box-shadow: 0 3px 4px rgba(0,0,0,0.2);
+	 text-decoration: none;
+}
+.bt-custom a:hover{
+	
+	color: white !important
+	
+}
+
+
+
+
+
+
+
+
+
