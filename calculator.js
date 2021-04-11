@@ -1,51 +1,61 @@
 document.addEventListener("DOMContentLoaded", () => {
   var input = "";
-  var savedfirstoperand;
-  let operand = "";
+  var savedinput;
+  let operator = "";
+  var result = undefined;
 
   document.querySelectorAll("button").forEach(function (button) {
     button.onclick = function () {
-        if (button.dataset.value !== undefined) {
-            console.log(typeof button.dataset.value);
-            input += button.dataset.value;
-            console.log(input);
-            document.querySelector("#viewresult").innerHTML = input;
-        }
-
-      if (button.dataset.operand !== undefined) {
-        savedfirstoperand = input;
-        input = '';
+      if (button.dataset.value !== undefined) {
+        input += button.dataset.value;
         document.querySelector("#viewresult").innerHTML = input;
-        operand = button.dataset.operand;
-    }
-
+        savedinput = input;
+      }
+      // check if clicked button is an operator
+      if (button.dataset.operand !== undefined) {
+        savedinput = input;
+        calculate();
+        operator = button.dataset.operand;
+        input = "";
+        document.querySelector("#viewresult").innerHTML = input;
+      }
     };
   });
 
-
   document.querySelector("#result").onclick = () => {
-    if (operand === "+") {
-      document.querySelector("#viewresult").innerHTML =
-        parseFloat(input) + parseFloat(savedfirstoperand);
-    }
-    if (operand === "-") {
-      document.querySelector("#viewresult").innerHTML =
-        parseFloat(input) - parseFloat(savedfirstoperand);
-    }
-    if (operand === "*") {
-      document.querySelector("#viewresult").innerHTML =
-        parseFloat(input) * parseFloat(savedfirstoperand);
-    }
-    if (operand === "/") {
-      document.querySelector("#viewresult").innerHTML =
-        parseFloat(input) / parseFloat(savedfirstoperand);
-    }
-    input = '';
+    calculate();
+    input = "";
+    document.querySelector("#viewresult").innerHTML = result;
   };
 
-  document.querySelector('#reset').onclick = () => {
-      input = '';
-      savedfirstoperand = '';
-      document.querySelector("#viewresult").innerHTML = '';
+  document.querySelector("#reset").onclick = () => {
+    input = "";
+    savedinput = "";
+    result = undefined;
+    document.querySelector("#viewresult").innerHTML = "";
+  };
+
+  function calculate() {
+    //  check if savedinput is not a number
+    let parsed = parseFloat(savedinput);
+    if (isNaN(parsed)) {
+      return false;
+    }
+    if (result === undefined) {
+      result = parsed;
+    } else {
+      if (operator === "+") {
+        result = result + parsed;
+      }
+      if (operator === "-") {
+        result = result - parsed;
+      }
+      if (operator === "*") {
+        result = result * parsed;
+      }
+      if (operator === "/") {
+        result = result / parsed;
+      }
+    }
   }
 });
