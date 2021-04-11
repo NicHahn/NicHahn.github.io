@@ -1,12 +1,45 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome</title>
+    <link rel="stylesheet" type="text/css" href="calculator.css" />
+    <title>Calculator</title>
   </head>
   <body>
-    <h1>In Progress ...</h1>
-    
+    <div class="center-screen ">
+      <div class="result" id="viewresult"></div>
+      <div class="grid-container">
+        <!-- <div class="grid-container"> -->
+        <button class="tile grid-item" data-value="7">7</button>
+        <button class="tile grid-item" data-value="8">8</button>
+        <button class="tile grid-item" data-value="9">9</button>
+        <button class="tile grid-item" data-value="(">(</button>
+        <button class="tile grid-item" data-value=")">)</button>
+        <!-- </div> -->
+        <!-- <div class="grid-container"> -->
+        <button class="tile grid-item" data-value="4">4</button>
+        <button class="tile grid-item" data-value="5">5</button>
+        <button class="tile grid-item" data-value="6">6</button>
+        <button class="tile grid-item" id="times" data-operand= "*">*</button>
+        <button class="tile grid-item" id="divide" data-operand= "/">/</button>
+        <!-- </divclass="grid-container"> -->
+        <button class="tile grid-item" data-value="1">1</button>
+        <button class="tile grid-item" data-value="2">2</button>
+        <button class="tile grid-item" data-value="3">3</button>
+        <button class="tile grid-item" id="plus" data-operand= "+">+</button>
+        <button class="tile grid-item" id="minus" data-operand= "-">-</button>
+        <!-- </div> -->
+        <!-- <div class="grid-container"> -->
+        <button class="tile grid-item" data-value="0">0</button>
+        <button class="tile grid-item" data-value=".">.</button>
+        <button class="tile grid-item" data-value="-">(-)</button>
+        <button class="tile grid-item" id="result">=</button>
+        <button class="tile grid-item" id="reset">c</button>
+        <!-- </div> -->
+      </div>
+    </div>
+    <script src="calculator.js"></script>
   </body>
 </html>

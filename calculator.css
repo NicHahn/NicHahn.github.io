@@ -1,0 +1,69 @@
+body {
+  animation: 30s ease-in-out infinite color-change;
+ 
+}
+
+@keyframes color-change {
+  0% {
+    background: linear-gradient(90deg, red, blue);
+  }
+  20% {
+    background: linear-gradient(120deg, red, blue);
+  }
+  40% {
+    background: linear-gradient(160deg, red, blue);
+  }
+  60% {
+    background: linear-gradient(140deg, red, blue);
+  }
+  80% {
+    background: linear-gradient(120deg, red, blue);
+  }
+  100% {
+    background: linear-gradient(90deg, red, blue);
+  }
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 60px 60px 60px 60px 60px;
+  column-count: 5;
+  column-gap: 2px;
+  row-gap: 2px;
+}
+.grid-item {
+  opacity: 0.4;
+  font-size: 30px;
+  height: 60px;
+}
+
+.center-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.result {
+  font-weight: bold;
+  font-size: larger;
+  background-color: rgba(255, 255, 255, 0.8);
+  opacity: 0.66;
+  text-align: right;
+  padding-right: 8px;
+  width: 307px;
+  height: 50px;
+  float: right;
+  line-height: 50px;
+  margin-bottom: 5px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box;
+}
+
+.grid-item:hover {
+  opacity: 0.66;
+  cursor: pointer;
+}
