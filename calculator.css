@@ -1,6 +1,5 @@
 body {
   animation: 30s ease-in-out infinite color-change;
- 
 }
 
 @keyframes color-change {
@@ -47,6 +46,7 @@ body {
 }
 
 .result {
+  font-family: 'Times New Roman', Times, serif;
   font-weight: bold;
   font-size: larger;
   background-color: rgba(255, 255, 255, 0.8);
@@ -54,13 +54,24 @@ body {
   text-align: right;
   padding-right: 8px;
   width: 307px;
-  height: 50px;
+  height: 2.5em;
   float: right;
-  line-height: 50px;
+  line-height: 2.3em;
   margin-bottom: 5px;
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box; /* Firefox, other Gecko */
   box-sizing: border-box;
+}
+
+#viewinput{
+  opacity: 0.65;
+  font-size: smaller;
+  font-weight: lighter;
+  visibility: hidden;
+  padding-top: 0.2em;
+  margin-bottom: 0px;
+  height: 1.3em;
+  line-height: 1em;
 }
 
 .grid-item:hover {
