@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #f4f4f4;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Filme</h1>
+    <ul id="film-list"></ul>
+
+    <script>
+        // Lade die Filmliste aus einer Datei
+        fetch('src/movies.txt')
+            .then(response => response.text())
+            .then(data => {
+                const filmList = document.getElementById('film-list');
+                const films = data.split('\n').filter(film => film.trim() !== '');
+                films.forEach(film => {
+                    const li = document.createElement('li');
+                    li.textContent = film;
+                    filmList.appendChild(li);
+                });
+            })
+            .catch(error => console.error('Fehler beim Laden der Filmliste:', error));
+    </script>
+</body>
+</html>
