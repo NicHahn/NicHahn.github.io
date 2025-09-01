@@ -22,6 +22,12 @@
             margin: 5px 0;
             padding: 10px;
             border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+        }
+        img {
+            max-width: 100px;
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -30,6 +36,24 @@
     <ul id="film-list"></ul>
 
     <script>
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMmY2ZWExZjQ5ZGNmZWIxODMyYWQ4Njc5MjcwMTM3OSIsIm5iZiI6MTc1NjczODQwOS4xMzkwMDAyLCJzdWIiOiI2OGI1YjM2OWQyZTJkMWY5NTRiNGZhZTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.QKirxFsEJq69Kmah46ZA9WjZJ9A_Kwybih9XaftUASM'
+            }
+        };
+
+        // Funktion zur Bereinigung der Filmtitel
+        function bereinigeTitel(titel) {
+            return titel
+                .replace(/\(\d{4}\)/g, '') // Entferne Jahreszahlen in Klammern, z. B. "(1964)"
+                .replace(/\d{4}/g, '') // Entferne alleinstehende Jahreszahlen, z. B. "2019"
+                .replace(/\b(EXTENDED|Remastered)\b/gi, '') // Entferne Zusätze wie "EXTENDED" oder "Remastered"
+                .replace(/\s{2,}/g, ' ') // Entferne doppelte Leerzeichen
+                .trim(); // Entferne führende und nachfolgende Leerzeichen
+        }
+
         // Lade die Filmliste aus einer Datei
         fetch('src/movies.txt')
             .then(response => response.text())
@@ -37,9 +61,26 @@
                 const filmList = document.getElementById('film-list');
                 const films = data.split('\n').filter(film => film.trim() !== '');
                 films.forEach(film => {
+                    const bereinigterFilm = bereinigeTitel(film); // Bereinige den Titel
                     const li = document.createElement('li');
                     li.textContent = film;
                     filmList.appendChild(li);
+
+                    // API-Aufruf für das Poster
+                    fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(bereinigterFilm)}&language=en-US&page=1`, options)
+                        .then(response => response.json())
+                        .then(movieData => {
+                            if (movieData.results && movieData.results.length > 0 && movieData.results[0].poster_path) {
+                                const posterPath = movieData.results[0].poster_path;
+                                const img = document.createElement('img');
+                                img.src = `https://image.tmdb.org/t/p/w1280${posterPath}`;
+                                img.alt = `${film} Poster`;
+                                li.prepend(img); // Füge das Poster vor dem Text hinzu
+                            } else {
+                                console.error(`Kein Poster gefunden für: ${film}`);
+                            }
+                        })
+                        .catch(error => console.error(`Fehler beim Abrufen von Daten für ${film}:`, error));
                 });
             })
             .catch(error => console.error('Fehler beim Laden der Filmliste:', error));
