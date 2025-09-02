@@ -9,30 +9,83 @@
             font-family: Arial, sans-serif;
             line-height: 1.6;
             margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
         }
         h1 {
-            color: #333;
+            color: #444;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .controls select, .controls input, .controls button {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .controls select {
+            background-color: #f4f4f4;
+        }
+        .controls input {
+            flex: 1;
+            background-color: #f4f4f4;
+        }
+        .controls button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .controls button:hover {
+            background-color: #0056b3;
         }
         ul {
             list-style-type: none;
             padding: 0;
+            margin: 0 auto;
+            max-width: 800px;
         }
         li {
-            background: #f4f4f4;
-            margin: 5px 0;
-            padding: 10px;
+            background: #fff;
+            margin: 10px 0;
+            padding: 15px;
             border: 1px solid #ddd;
+            border-radius: 8px;
             display: flex;
             align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         img {
             max-width: 100px;
-            margin-right: 10px;
+            margin-right: 15px;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
     <h1>Filme</h1>
+    <div class="controls">
+        <select id="file-select">
+            <option value="all">Alle</option>
+            <option value="src/movies.txt">Liste 1</option>
+            <option value="src/movies_2.txt">Liste 2</option>
+            <option value="src/movies_3.txt">Liste 3</option>
+        </select>
+        <input type="text" id="search-input" placeholder="Nach Titel suchen...">
+        <button id="search-button">Suchen</button>
+    </div>
     <ul id="film-list"></ul>
 
     <script>
@@ -44,46 +97,93 @@
             }
         };
 
-        // Funktion zur Bereinigung der Filmtitel
-        function bereinigeTitel(titel) {
-            return titel
-                .replace(/\(\d{4}\)/g, '') // Entferne Jahreszahlen in Klammern, z. B. "(1964)"
-                .replace(/\d{4}/g, '') // Entferne alleinstehende Jahreszahlen, z. B. "2019"
-                .replace(/\b(EXTENDED|Remastered)\b/gi, '') // Entferne Zusätze wie "EXTENDED" oder "Remastered"
-                .replace(/\s{2,}/g, ' ') // Entferne doppelte Leerzeichen
-                .trim(); // Entferne führende und nachfolgende Leerzeichen
+        const fileSelect = document.getElementById('file-select');
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        const filmList = document.getElementById('film-list');
+
+        // Funktion zur Bereinigung der Filmtitel und Extrahierung des Jahres
+        function bereinigeTitelUndJahr(titel) {
+            const jahrMatch = titel.match(/\d{4}/); // Suche nach einer Jahreszahl
+            const jahr = jahrMatch ? jahrMatch[0] : null; // Extrahiere das Jahr, falls vorhanden
+            const bereinigterTitel = titel
+                .replace(/\(\d{4}\)/g, '')
+                .replace(/\d{4}/g, '')
+                .replace(/\b(EXTENDED|Remastered)\b/gi, '')
+                .replace(/\s{2,}/g, ' ')
+                .trim();
+            return { bereinigterTitel, jahr };
         }
 
-        // Lade die Filmliste aus einer Datei
-        fetch('src/movies.txt')
-            .then(response => response.text())
-            .then(data => {
-                const filmList = document.getElementById('film-list');
-                const films = data.split('\n').filter(film => film.trim() !== '');
-                films.forEach(film => {
-                    const bereinigterFilm = bereinigeTitel(film); // Bereinige den Titel
+        // Funktion zum Laden und Anzeigen der Filme
+        function ladeFilme(dateien, suchbegriff = '') {
+            filmList.innerHTML = ''; // Liste zurücksetzen
+            const alleFilme = [];
+
+            const ladeDatei = (datei) => {
+                return fetch(datei)
+                    .then(response => response.text())
+                    .then(data => {
+                        const filme = data.split('\n').filter(film => film.trim() !== '');
+                        filme.forEach(film => {
+                            const { bereinigterTitel, jahr } = bereinigeTitelUndJahr(film);
+                            if (!suchbegriff || bereinigterTitel.toLowerCase().includes(suchbegriff.toLowerCase())) {
+                                alleFilme.push({ original: film, bereinigterTitel, jahr });
+                            }
+                        });
+                    });
+            };
+
+            const ladeAlleDateien = dateien.map(datei => ladeDatei(datei));
+            Promise.all(ladeAlleDateien).then(() => {
+                alleFilme.forEach(({ original, bereinigterTitel, jahr }) => {
                     const li = document.createElement('li');
-                    li.textContent = film;
+                    li.textContent = original;
                     filmList.appendChild(li);
 
                     // API-Aufruf für das Poster
-                    fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(bereinigterFilm)}&language=en-US&page=1`, options)
+                    const apiUrl = `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(bereinigterTitel)}&language=en-US&page=1${jahr ? `&primary_release_year=${jahr}` : ''}`;
+                    fetch(apiUrl, options)
                         .then(response => response.json())
                         .then(movieData => {
                             if (movieData.results && movieData.results.length > 0 && movieData.results[0].poster_path) {
                                 const posterPath = movieData.results[0].poster_path;
                                 const img = document.createElement('img');
                                 img.src = `https://image.tmdb.org/t/p/w1280${posterPath}`;
-                                img.alt = `${film} Poster`;
+                                img.alt = `${original} Poster`;
                                 li.prepend(img); // Füge das Poster vor dem Text hinzu
                             } else {
-                                console.error(`Kein Poster gefunden für: ${film}`);
+                                console.error(`Kein Poster gefunden für: ${original}`);
                             }
                         })
-                        .catch(error => console.error(`Fehler beim Abrufen von Daten für ${film}:`, error));
+                        .catch(error => console.error(`Fehler beim Abrufen von Daten für ${original}:`, error));
                 });
-            })
-            .catch(error => console.error('Fehler beim Laden der Filmliste:', error));
+            });
+        }
+
+        // Event-Listener für die Dateiauswahl
+        fileSelect.addEventListener('change', () => {
+            const selectedFile = fileSelect.value;
+            if (selectedFile === 'all') {
+                ladeFilme(['src/movies_1.txt']);
+            } else {
+                ladeFilme([selectedFile]);
+            }
+        });
+
+        // Event-Listener für die Suche
+        searchButton.addEventListener('click', () => {
+            const selectedFile = fileSelect.value;
+            const suchbegriff = searchInput.value;
+            if (selectedFile === 'all') {
+                ladeFilme(['src/movies.txt'], suchbegriff);
+            } else {
+                ladeFilme([selectedFile], suchbegriff);
+            }
+        });
+
+        // Standardmäßig alle Filme laden
+        ladeFilme(['src/movies_1.txt']);
     </script>
 </body>
 </html>
