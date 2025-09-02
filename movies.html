@@ -104,14 +104,19 @@
 
         // Funktion zur Bereinigung der Filmtitel und Extrahierung des Jahres
         function bereinigeTitelUndJahr(titel) {
-            const jahrMatch = titel.match(/\d{4}/); // Suche nach einer Jahreszahl
+            const jahrMatch = titel.match(/\d{4}(?!.*\d{4})/); // Suche nach einer Jahreszahl
             const jahr = jahrMatch ? jahrMatch[0] : null; // Extrahiere das Jahr, falls vorhanden
-            const bereinigterTitel = titel
-                .replace(/\(\d{4}\)/g, '')
-                .replace(/\d{4}/g, '')
-                .replace(/\b(EXTENDED|Remastered)\b/gi, '')
-                .replace(/\s{2,}/g, ' ')
-                .trim();
+
+            let bereinigterTitel = titel;
+            // Spezialfall: Titel mit zwei Jahreszahlen, z. B. "2017 (2020)"
+            const spezialFallMatch = bereinigterTitel.match(/^(\d{4})\s*\(\d{4}\)/);
+            if (spezialFallMatch) {
+                bereinigterTitel = spezialFallMatch[1]; // Behalte nur die erste Jahreszahl
+            } else {
+                // Entferne Jahreszahlen (mit oder ohne Klammer) und alles dahinter
+                bereinigterTitel = titel.replace(/(\d{4}.*|\(\d{4}\).*)$/, '').trim();
+
+            }
             return { bereinigterTitel, jahr };
         }
 
