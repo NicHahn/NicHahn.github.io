@@ -5,22 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movies</title>
     <style>
+        /* Base styles (Mobile First) */
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            margin: 20px;
+            margin: 0;
+            padding: 10px;
             background-color: #f9f9f9;
-            color: #333;
         }
+
         h1 {
-            color: #444;
+            font-size: 1.5rem;
             text-align: center;
-            margin-bottom: 20px;
+            margin: 10px 0;
         }
+
         .controls {
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
             gap: 10px;
             margin-bottom: 20px;
             padding: 10px;
@@ -28,19 +30,18 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .controls select, .controls input, .controls button {
-            padding: 10px;
+
+        .controls select, 
+        .controls input, 
+        .controls button {
+            width: 100%;
+            padding: 12px;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 16px;
+            box-sizing: border-box; /* Wichtig: Verhindert Überbreite */
         }
-        .controls select {
-            background-color: #f4f4f4;
-        }
-        .controls input {
-            flex: 1;
-            background-color: #f4f4f4;
-        }
+
         .controls button {
             background-color: #007BFF;
             color: #fff;
@@ -48,29 +49,140 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         .controls button:hover {
             background-color: #0056b3;
         }
+
         ul {
             list-style-type: none;
             padding: 0;
-            margin: 0 auto;
-            max-width: 800px;
+            margin: 0;
         }
+
         li {
             background: #fff;
             margin: 10px 0;
-            padding: 15px;
-            border: 1px solid #ddd;
+            padding: 10px;
             border-radius: 8px;
-            display: flex;
-            align-items: center;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Zentriert den Inhalt */
+            text-align: center; /* Zentriert den Text */
+            gap: 10px;
         }
+
         img {
-            max-width: 100px;
-            margin-right: 15px;
+            width: 100%;
+            max-width: 300px;
+            height: auto;
             border-radius: 5px;
+            display: block;
+            margin-bottom: 10px; /* Abstand zum Titel */
+        }
+
+        /* Tablet breakpoint */
+        @media (min-width: 768px) {
+            .controls {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .controls select,
+            .controls input {
+                flex: 1;
+            }
+
+            .controls button {
+                width: auto;
+                min-width: 120px;
+            }
+
+            li {
+                flex-direction: row;
+                align-items: center;
+                padding: 15px;
+            }
+
+            img {
+                width: 150px;
+                margin: 0 15px 0 0;
+            }
+        }
+
+        /* Desktop breakpoint */
+        @media (min-width: 1024px) {
+            body {
+                padding: 20px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            li {
+                padding: 20px;
+            }
+
+            img {
+                width: 200px;
+            }
+        }
+
+        /* Scroll to top button styles */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            visibility: hidden; /* Änderung hier */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease; /* Änderung hier */
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .scroll-top:hover {
+            background-color: #0056b3;
+        }
+
+        .scroll-top.visible {
+            visibility: visible; /* Änderung hier */
+            opacity: 0.9;
+            transform: translateY(0);
+        }
+
+        .controls select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 1em;
+            padding-right: 40px;
+        }
+
+        /* Für Firefox */
+        .controls select:-moz-focusring {
+            color: transparent;
+            text-shadow: 0 0 0 #000;
+        }
+
+        /* Für IE/Edge */
+        .controls select::-ms-expand {
+            display: none;
         }
     </style>
 </head>
@@ -79,14 +191,15 @@
     <div class="controls">
         <select id="file-select">
             <option value="all">Alle</option>
-            <option value="src/movies.txt">Liste 1</option>
-            <option value="src/movies_2.txt">Liste 2</option>
-            <option value="src/movies_3.txt">Liste 3</option>
+            <option value="src/movie_title_lists/movies_1.txt">Platte 1</option>
+            <option value="src/movie_title_lists/movies_2.txt">Platte 2</option>
+            <option value="src/movie_title_lists/movies_3.txt">Platte 3</option>
         </select>
         <input type="text" id="search-input" placeholder="Nach Titel suchen...">
         <button id="search-button">Suchen</button>
     </div>
     <ul id="film-list"></ul>
+    <button id="scroll-top" class="scroll-top" aria-label="Zum Anfang scrollen">↑</button>
 
     <script>
         const options = {
@@ -101,6 +214,16 @@
         const searchInput = document.getElementById('search-input');
         const searchButton = document.getElementById('search-button');
         const filmList = document.getElementById('film-list');
+        const scrollTopButton = document.getElementById('scroll-top');
+
+        function ladeDateiliste() {
+            const dateien = [
+                'movies_1.txt',
+                'movies_2.txt',
+                'movies_3.txt',
+            ];
+            return dateien.map(name => `src/movie_title_lists/${name}`);
+        }
 
         // Funktion zur Bereinigung der Filmtitel und Extrahierung des Jahres
         function bereinigeTitelUndJahr(titel) {
@@ -170,7 +293,7 @@
         fileSelect.addEventListener('change', () => {
             const selectedFile = fileSelect.value;
             if (selectedFile === 'all') {
-                ladeFilme(['src/movies_1.txt']);
+                ladeFilme(ladeDateiliste());
             } else {
                 ladeFilme([selectedFile]);
             }
@@ -181,14 +304,38 @@
             const selectedFile = fileSelect.value;
             const suchbegriff = searchInput.value;
             if (selectedFile === 'all') {
-                ladeFilme(['src/movies.txt'], suchbegriff);
+                ladeFilme(ladeDateiliste(), suchbegriff);
             } else {
                 ladeFilme([selectedFile], suchbegriff);
             }
         });
 
+        const scrollButton = document.getElementById('scroll-top');
+
+        // Scroll-Button anzeigen/verstecken
+        window.addEventListener('scroll', () => {
+            // Berechne, wie weit der User gescrollt hat (in Prozent)
+            const scrollPercent = (window.pageYOffset / 
+                (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            
+            // Button erst ab 2% Scroll-Tiefe anzeigen
+            if (scrollPercent > 2) {
+                scrollButton.classList.add('visible');
+            } else {
+                scrollButton.classList.remove('visible');
+            }
+        });
+
+        // Zum Anfang scrollen wenn Button geklickt wird
+        scrollButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
         // Standardmäßig alle Filme laden
-        ladeFilme(['src/movies_1.txt']);
+        ladeFilme(ladeDateiliste());
     </script>
 </body>
 </html>
