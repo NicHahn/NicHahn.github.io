@@ -65,6 +65,7 @@ Greenland 2020
 House of Gucci 2021
 Independence Day 1996
 Indiana Jones und das Rad des Schicksals 2023
+Kandahar 2023
 Konklave 2024
 Last Night In Soho 2021
 Life of Pi Schiffbruch mit Tiger 2012
@@ -84,6 +85,7 @@ Mission Impossible III 2006
 Mission Impossible The Final Reckoning 2025
 Moonfall 2022
 Nobody 2021
+Oppenheimer 2023
 Planet der Affen New Kingdom 2024
 Planet der Affen Revolution 2014
 Planet der Affen Survival 2017
@@ -99,12 +101,16 @@ Sleepers 1996
 Sleepy Hollow 1999
 Snake Eyes G.I.Joe Origins 2021
 Rogue One A Star Wars Story 2016
+Solo - A Star Wars Story 2018
 Star Wars Episode I Die dunkle Bedrohung 1999
 Star Wars Episode II Angriff der Klonkrieger 2002
 Star Wars Episode III Die Rache der Sith 2005
 Star Wars Episode IV Eine neue Hoffnung 1977
+Star Wars Episode lX Der Aufstieg Skywalkers 2019
 Star Wars Episode V Das Imperium schlaegt zurueck 1980
 Star Wars Episode VI Die Rueckkehr der Jedi Ritter 1983
+Star Wars Episode VII Das Erwachen der Macht (2015)
+Star Wars Episode VIII Die letzten Jedi 2017
 Stillwater Gegen jeden Verdacht 2021
 The Beekeeper 2024
 The Contractor 2022
@@ -121,6 +127,13 @@ The Whale 2022
 Ticket ins Paradies 2021
 Tom Clancys Gnadenlos 2021
 Top Gun Maverick 2022
+Bumblebee 2018
+Transformers - Ära des Untergangs 2014
+Transformers 2 Die Rache 2009
+Transformers 2007
+Transformers 3 2011
+Transformers Aufstieg der Bestien 2023
+Transformers The Last Knight 2017
 Trap No Way Out 2024
 Twisters 2024
 Uncharted 2022
