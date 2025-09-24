@@ -1,3 +1,4 @@
+S-1-5-21-910325365-4051910508-4136712068-1001
 2001 Odyssee im Weltraum 1968
 2012 (2009)
 3 Engel fuer Charlie 2019
@@ -5,6 +6,7 @@
 47 Ronin 2013
 8 Blickwinkel 2008
 A History of Violence 2005
+A Killer Romance 2023
 Alita Battle Angel 2019
 American Gangster 2007 THEATRiCAL
 Argo 2012
@@ -18,6 +20,8 @@ Blade 2 2002 UNCUT
 Blade 3 2004 EXTENDED
 Blood Diamond 2016
 Born to be Wild 2007
+Catch Me If You Can 2002
+Civil War 2024
 Collateral 2004
 Dallas Buyers Club 2013
 Dame Koenig As Spion 2012
@@ -71,9 +75,19 @@ Gran Torino 2008
 Greyhound 2020
 Hancock 2008
 Hangover 2009
+Harry Potter und der Feuerkelch 2005
+Harry Potter und der Gefangene von Askaban 2004
+Harry Potter und der Halbblutprinz 2009
+Harry Potter und der Stein der Weisen 2001
+Harry Potter und die Heiligtümer des Todes – Teil 1 2010
+Harry Potter und die Heiligtümer des Todes – Teil 2 2011
+Harry Potter und die Kammer des Schreckens 2002
+Harry Potter- Der Orden des Phoenix 2007
 Hellboy 2004
 I Saw The Devil (2010) [EXTENDED]
 Identity German 2003
+Immaculate 2024
+In Time Deine Zeit läuft ab 2011
 Inglourious Basterds 2009
 Interstellar 2014
 Into the Wild 2007
@@ -88,10 +102,12 @@ John Wick Kapitel 4 2023
 Johnny English 2003
 Johnny English Jetzt erst recht 2011
 Johny English 3 - Man lebt nur drei Mal 2018
+Jurassic Park 1993
 Jurassic World 2 - Das gefallene Königreich 2018
 Jurassic World 2015
 Jurassic World Die Wiedergeburt 2025
 Jurassic World Ein neues Zeitalter 2022
+Vergessene Welt Jurassic Park 1997
 Kill Bill Volume 1 (2003) [UNCUT]
 Kong Skull Island (2017)
 Lara Croft Tomb Raider (2001)
@@ -108,27 +124,29 @@ Mulan 2020
 Need for Speed 2014
 Nicht Auflegen (2002)
 No Country for Old Men (2007)
+Nosferatu Der Untote 2024 EXTENDED
 Oblivion 2013
 Olympus Has Fallen 2013
 Philadelphia (1993)
 Premium Rush (2012)
 Pulp Fiction 1994
 R.E.D Älter härter besser (2010)
+Ratatouille 2007
 Ready Player One (2018)
 Riddick Chroniken eines Kriegers 2004 [Directors Cut]
 Riddick Pitch Black Planet der Finsternis 2000
 Riddick Ueberleben ist seine Rache 2013 [EXTENDED]
 Robin Hood 2018
+Rocky 1976
 Run Du kannst ihr nicht entkommen (2020)
-Sicario (2015)
+Saw X 2023
+Shutter Island 2010
+Sicario 2 2018
+Sicario 2015
 Sieben (1995) [Remastered]
 Source Code 2011
 Southpaw 2015
-Rogue One - A Star Wars Story 2016
-Solo - A Star Wars Story 2018
-Star Wars Episode lX Der Aufstieg Skywalkers 2019
-Star Wars Episode VII Das Erwachen der Macht (2015)
-Star Wars Episode VIII Die letzten Jedi 2017
+Speak No Evil 2022
 Stirb langsam (1988)
 Suspiria 2018
 Tenet 2020
@@ -136,11 +154,15 @@ Terminator 2 (1991)
 Terminator Genisys (2015)
 The Big Short 2015
 The Cabin In The Woods (2012)
+The Equalizer 2 2018
+The Equalizer 2014
+The Equalizer 3 The Final Chapter 2023
 The Expendables 2 2012 UNCUT
 The Expendables 2010
 The Expendables 3 2014
 The Fighter (2010)
 The Gentleman 2019
+The Green Mile 1999
 The Guilty (2018)
 The Huntsman Winters War (2016) [EXTENDED]
 The Killer Inside Me 2010
@@ -149,6 +171,7 @@ The Losers (2010)
 The Night Clerk (2020)
 The Outpost Überleben ist alles (2019)
 The Prestige (2006)
+The Prosecutor 2024
 The Shallows 2016
 The Town Stadt ohne Gnade (2010)
 The Wolf of Wall Street (2013)
@@ -163,6 +186,7 @@ Unhinged 2020
 Walk the Line 2005 [EXTENDED]
 Wanted 2008
 Warrior 2011
+Wo die Lüge hinfällt 2023
 Logan - The Wolverine 2017
 Wolverine - Weg des Kriegers (2013) [EXTENDED]
 X-Men 2 2003
