@@ -163,6 +163,12 @@
             transform: translateY(0);
         }
 
+        .disc-number {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
         .controls select {
             appearance: none;
             -webkit-appearance: none;
@@ -255,8 +261,15 @@
                         const filme = data.split('\n').filter(film => film.trim() !== '');
                         filme.forEach(film => {
                             const { bereinigterTitel, jahr } = bereinigeTitelUndJahr(film);
+                            const discNumber = datei.match(/movies_(\d+)\.txt/)?.[1];
                             if (!suchbegriff || bereinigterTitel.toLowerCase().includes(suchbegriff.toLowerCase())) {
-                                alleFilme.push({ original: film, bereinigterTitel, jahr });
+                                // Speichere die Datei-Information mit
+                                alleFilme.push({ 
+                                    original: film, 
+                                    bereinigterTitel, 
+                                    jahr,
+                                    discNumber // Speichere die Plattennummer
+                                });
                             }
                         });
                     });
@@ -264,9 +277,18 @@
 
             const ladeAlleDateien = dateien.map(datei => ladeDatei(datei));
             Promise.all(ladeAlleDateien).then(() => {
-                alleFilme.forEach(({ original, bereinigterTitel, jahr }) => {
+                alleFilme.forEach(({ original, bereinigterTitel, jahr, discNumber }) => {
                     const li = document.createElement('li');
-                    li.textContent = original;
+                    const titleDiv = document.createElement('div');
+                    titleDiv.textContent = original;
+                    
+                    const discDiv = document.createElement('div');
+                    discDiv.textContent = `Platte: ${discNumber}`;
+                    discDiv.className = 'disc-number';
+                    titleDiv.appendChild(discDiv);
+                    
+                    
+                    li.appendChild(titleDiv);
                     filmList.appendChild(li);
 
                     // API-Aufruf für das Poster
@@ -319,7 +341,7 @@
                 (document.documentElement.scrollHeight - window.innerHeight)) * 100;
             
             // Button erst ab 2% Scroll-Tiefe anzeigen
-            if (scrollPercent > 2) {
+            if (scrollPercent > 1) {
                 scrollButton.classList.add('visible');
             } else {
                 scrollButton.classList.remove('visible');
